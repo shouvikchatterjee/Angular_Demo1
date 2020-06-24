@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+.container{
+    // margin-top: 20px;
+    //border: 1px solid #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+}
+
+.table th,.table thead th,.table td{
+    border: 1px solid #000000;
+    text-align: center;
+}
+
+.grey{
+    background-color: lightgrey;
+}
+.white{
+    background-color: white;
+}
+.heading{
+    background-color: lightyellow;
+}
+
+.form_container{
+    width:50%;
+    margin: 20px auto;
+}
+
+.select_box{
+    margin-left:50px;
+}
+select{
+    margin-right: 10px;
+}
+.form-check{
+    margin-left: 10px;
+}
+.dob{
+margin: 10px 0 0 10px;
+}

@@ -1,0 +1,116 @@
+ <div class='form_container'>
+    <form [formGroup]='form' (ngSubmit)="onFormSubmit()">
+        <div class="form-group">
+            <label>Name</label>
+            <input formControlName='name' type="text" class="form-control" placeholder="Name">
+            <div class="alert alert-danger" *ngIf='form.controls.name.touched && form.controls.name.invalid'>
+                <small *ngIf='form.controls.name.errors.required'>Name is required.</small>
+                <small *ngIf='form.controls.name.errors.minlength'>Please enter minimum
+                    {{form.controls.name.errors.minlength.requiredLength}} characters.</small>
+                <small *ngIf='form.controls.name.errors.maxlength'>Name should not exceed more than
+                    {{form.controls.name.errors.maxlength.requiredLength}} characters.</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Email address</label>
+            <input formControlName='email' type="email" class="form-control" placeholder="Email">
+            <div class="alert alert-danger" *ngIf='form.controls.email.touched && form.controls.email.invalid'>
+                <small *ngIf='form.controls.email.errors.required'>Email is required.</small>
+                <small *ngIf='form.controls.email.errors.email'>Email is not valid.</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input formControlName='password' type="password" class="form-control" placeholder="Password">
+            <div class="alert alert-danger" *ngIf='form.controls.password.touched && form.controls.password.invalid'>
+                <small *ngIf='form.controls.password.errors.required'>Password is required.</small>
+                <small *ngIf='form.controls.password.errors.pattern'>Password must contain:<br>
+                    <ol>
+                        <li>Atleast 1 uppercase letter</li>
+                        <li>Atleast 1 lowercase letter</li>
+                        <li>Atleast 1 number letter</li>
+                        <li>Atleast 1 special letter</li>
+                        <li>Minimum 8 characters long</li>
+                    </ol>
+                </small>
+                <!-- <small *ngIf='form.controls.password.errors.minlength'>Please enter minimum -->
+                    <!-- {{form.controls.password.errors.minlength.requiredLength}} characters.</small> -->
+            </div>
+        </div>
+
+        <div class="form-group form-inline">
+            <label>Date of birth:</label>
+            <div class="form-group select_box d-flex justify-content-center">
+                <select class="form-control" formControlName="day">
+                    <option [ngValue]='null' selected disabled>Choose a day</option>
+                    <option *ngFor='let d of day' [ngValue]='d'>{{d}}</option>
+                </select>
+                <select class="form-control" formControlName="month">
+                    <option [ngValue]='null' selected disabled>Choose a month</option>
+                    <option *ngFor='let m of month' [ngValue]='m'>{{m}}</option>
+                </select>
+                <select class="form-control" formControlName="year">
+                    <option [ngValue]='null' selected disabled>Choose a year</option>
+                    <option *ngFor='let y of year' [ngValue]='y'>{{y}}</option>
+                </select>
+            </div>
+            <div class="alert alert-danger dob" *ngIf="form.controls.day.invalid && form.controls.day.touched">
+                Day is required.
+            </div>
+            <div class="alert alert-danger dob" *ngIf="form.controls.month.invalid && form.controls.month.touched">
+                Month is required.
+            </div>
+            <div class="alert alert-danger dob" *ngIf="form.controls.year.invalid && form.controls.year.touched">
+                Year is required.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Address</label>
+            <textarea class="form-control" formControlName="address" rows="3"></textarea>
+            <div class="alert alert-danger" *ngIf='form.controls.address.touched && form.controls.address.invalid'>
+                <small *ngIf='form.controls.address.errors.required'>Address is required.</small>
+                <small *ngIf='form.controls.address.errors.minlength'>Please enter minimum
+                    {{form.controls.address.errors.minlength.requiredLength}} characters.</small>
+            </div>
+        </div>
+        <div>
+            <label>Hobbies: </label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" formControlName="reading" value="option1">
+                <label class="form-check-label">Reading</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" formControlName="cooking" value="option2">
+                <label class="form-check-label">Cooking</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" formControlName="sleeping" value="option3">
+                <label class="form-check-label">Sleeping</label>
+            </div>
+        </div>
+        <div>
+            <label>Gender:</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" formControlName="gender" name="gender" id="inlineRadio1"
+                    value="male">
+                <label class="form-check-label">Male</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" formControlName="gender" name="gender" id="inlineRadio2"
+                    value="female">
+                <label class="form-check-label">Female</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>file input:</label>
+            <input type="file" class="form-control-file" formControlName="file">
+        </div>
+
+        <button type="submit" class="btn btn-success" [disabled]='form.invalid'>Submit</button>
+        <button type="button" class="btn btn-success ml-1" (click)="resetForm(form)">Reset</button>
+
+        <p>Form value: {{ form.value | json }}</p>
+    </form>
+</div>
