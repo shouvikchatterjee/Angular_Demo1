@@ -1,0 +1,13 @@
+<div class="container">
+    <h1>Parent</h1>
+    <input type="text" (keyup.enter)="addToList($event)" placeholder="Enter text..." class="w-100 text-control">
+    <div *ngIf="list.length>0">
+        <div *ngFor="let item of list">
+            <app-child [dataForChild]="item" (deleteThisItem)="deleteItem($event)"></app-child>
+        </div>
+    </div>
+    <div class="mt-5">Number of ticks: {{numberOfTicks}}</div>
+    <button (click)="updateView()" class="mt-2 btn btn-primary">Update View</button>
+</div>
+
+<app-sibling></app-sibling>
